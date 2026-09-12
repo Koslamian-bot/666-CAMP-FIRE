@@ -23,7 +23,15 @@ class CampfireWebSocket {
     }
 
     this.currentRoomCode = roomCode;
-    const wsUrl = import.meta.env.VITE_WS_URL || '/ws-campfire';
+    const getWsUrl = (): string => {
+      const envUrl = import.meta.env.VITE_WS_URL;
+      if (!envUrl) return '/ws-campfire';
+      const base = envUrl.startsWith('http://') || envUrl.startsWith('https://')
+        ? envUrl.replace(/\/$/, '')
+        : `https://${envUrl.replace(/\/$/, '')}`;
+      return base.endsWith('/ws-campfire') ? base : `${base}/ws-campfire`;
+    };
+    const wsUrl = getWsUrl();
 
     this.client = new Client({
       webSocketFactory: () => new SockJS(wsUrl),

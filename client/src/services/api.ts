@@ -8,7 +8,16 @@ import {
   GameMode,
 } from '../types/game';
 
-const API_BASE = import.meta.env.VITE_API_URL || '';
+function getApiBase(): string {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (!envUrl) return '';
+  if (envUrl.startsWith('http://') || envUrl.startsWith('https://')) {
+    return envUrl.replace(/\/$/, '');
+  }
+  return `https://${envUrl.replace(/\/$/, '')}`;
+}
+
+const API_BASE = getApiBase();
 
 function getHeaders(token?: string): HeadersInit {
   const headers: HeadersInit = {
