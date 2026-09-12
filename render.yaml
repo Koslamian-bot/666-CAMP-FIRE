@@ -3,7 +3,7 @@ services:
   - type: web
     name: campfire-backend
     env: docker
-    dockerfilePath: ./server/Dockerfile
+    dockerfilePath: ./Dockerfile
     plan: free
     region: oregon
     healthCheckPath: /api/rooms/health
