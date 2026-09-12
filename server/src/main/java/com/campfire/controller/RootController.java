@@ -1,18 +1,20 @@
 package com.campfire.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@RestController
+@Controller
 public class RootController {
 
-    @GetMapping("/")
-    public ResponseEntity<String> root() {
-        return ResponseEntity.ok("666-camp-fire backend API is running 🔥");
+    @GetMapping(value = {"/", "/{path:[^\\.]*}", "/{path1:[^\\.]*}/{path2:[^\\.]*}"})
+    public String forward() {
+        return "forward:/index.html";
     }
 
     @GetMapping("/health")
+    @ResponseBody
     public ResponseEntity<String> health() {
         return ResponseEntity.ok("Campfire burning bright 🔥");
     }
