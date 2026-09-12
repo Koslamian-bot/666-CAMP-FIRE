@@ -1,0 +1,49 @@
+services:
+  # Spring Boot Backend Web Service
+  - type: web
+    name: campfire-backend
+    env: docker
+    dockerfilePath: ./server/Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /api/rooms/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DATABASE_URL
+        fromDatabase:
+          name: campfire-db
+          property: connectionString
+      - key: CORS_ALLOWED_ORIGINS
+        value: "*"
+
+  # React Frontend Static Site
+  - type: web
+    name: campfire-frontend
+    env: static
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: ./client/dist
+    plan: free
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: campfire-backend
+          property: host
+      - key: VITE_WS_URL
+        fromService:
+          type: web
+          name: campfire-backend
+          property: host
+
+databases:
+  # Managed PostgreSQL Database
+  - name: campfire-db
+    plan: free
+    region: oregon
+    databaseName: campfiredb
+    user: campfire_user

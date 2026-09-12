@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    background-color: #09080D;
+    background-image: 
+      radial-gradient(circle at 50% 20%, rgba(255, 87, 34, 0.08) 0%, transparent 60%),
+      radial-gradient(circle at 80% 80%, rgba(255, 122, 0, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 20% 70%, rgba(230, 57, 70, 0.04) 0%, transparent 40%);
+    color: #F1F0F5;
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+/* Atmospheric embers backdrop canvas */
+.embers-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glowing text effects */
+.fire-text-glow {
+  text-shadow: 0 0 12px rgba(255, 122, 0, 0.6), 0 0 24px rgba(255, 87, 34, 0.3);
+}
+
+.fire-text-glow-lg {
+  text-shadow: 0 0 16px rgba(255, 183, 3, 0.7), 0 0 35px rgba(255, 87, 34, 0.5);
+}
+
+/* Campfire border glow card */
+.campfire-card {
+  background: linear-gradient(180deg, rgba(34, 28, 47, 0.85) 0%, rgba(24, 21, 34, 0.95) 100%);
+  border: 1px solid rgba(255, 122, 0, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+.campfire-card-glow {
+  background: linear-gradient(180deg, rgba(38, 30, 54, 0.9) 0%, rgba(24, 21, 34, 0.98) 100%);
+  border: 1px solid rgba(255, 122, 0, 0.4);
+  box-shadow: 0 0 30px -5px rgba(255, 87, 34, 0.25), inset 0 0 15px rgba(255, 122, 0, 0.1);
+  backdrop-filter: blur(16px);
+}
+
+/* Fire gradient buttons */
+.btn-fire-primary {
+  background: linear-gradient(135deg, #FF7A00 0%, #FF5722 50%, #D84315 100%);
+  box-shadow: 0 4px 20px rgba(255, 87, 34, 0.35);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-fire-primary:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 10px rgba(255, 87, 34, 0.5);
+}
+
+.btn-fire-secondary {
+  background: rgba(34, 28, 47, 0.8);
+  border: 1px solid rgba(255, 122, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-fire-secondary:active {
+  background: rgba(45, 37, 63, 0.9);
+  transform: scale(0.97);
+}
+
+/* Shimmer animation for hidden identities */
+@keyframes mysteryShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.mystery-shimmer {
+  background: linear-gradient(90deg, #241D30 25%, #3E3254 50%, #241D30 75%);
+  background-size: 200% 100%;
+  animation: mysteryShimmer 2.5s infinite;
+}
