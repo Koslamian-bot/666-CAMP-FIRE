@@ -170,3 +170,6 @@ npm run build
 - **Fair Assignment Algorithm**: Uses constraint satisfaction to ensure that when $N$ players submit $N$ questions, each player receives a question not authored by themselves, with balanced loads.
 - **Data Isolation**: Rooms are isolated by unique random room codes and player session tokens stored in secure headers (`X-Player-Token`).
 - **No Early Metadata Leaks**: The backend DTO transformation strips all sensitive relational IDs until state transitions officially reach `TARGET_REVEAL` or `AUTHOR_REVEAL`.
+
+
+test push
